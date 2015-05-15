@@ -1,0 +1,26 @@
+{
+    "name": "pwm/laravel-jms-serializer",
+    "description": "Laravel JMS serialization",
+    "keywords": [
+        "laravel",
+        "JMS",
+        "serializer"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zsolt Szende",
+            "email": "pwmosquito@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "laravel/framework": ">=5.0",
+        "jms/serializer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pwm\\LaravelJMSSerializer\\": "src/Pwm/LaravelJMSSerializer"
+        }
+    }
+}
