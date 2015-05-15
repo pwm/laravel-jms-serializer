@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.5.0",
         "laravel/framework": ">=5.0",
-        "jms/serializer": "dev-master"
+        "jms/serializer": "*"
     },
     "autoload": {
         "psr-4": {
