@@ -1,11 +1,7 @@
 {
     "name": "pwm/laravel-jms-serializer",
     "description": "Laravel JMS serialization",
-    "keywords": [
-        "laravel",
-        "JMS",
-        "serializer"
-    ],
+    "keywords": ["laravel", "JMS", "serializer"],
     "license": "MIT",
     "authors": [
         {
@@ -20,7 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Pwm\\LaravelJMSSerializer\\": "src/Pwm/LaravelJMSSerializer"
+            "Pwm\\LaravelJMSSerializer\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
