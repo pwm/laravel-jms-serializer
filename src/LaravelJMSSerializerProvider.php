@@ -56,14 +56,17 @@ class LaravelJMSSerializerProvider extends ServiceProvider {
             return $builder->build();
         });
 
+        // for easy access
+        $this->app->singleton('serializer', Serializer\Serializer::class);
+
         $this->mergeConfigFrom(
-            __DIR__.'config/jms-serializer.php', 'jms-serializer.php'
+            __DIR__.'/config/jms-serializer.php', 'jms-serializer.php'
         );
     }
 
     public function boot() {
         $this->publishes([
-            __DIR__.'config/jms-serializer.php' => config_path('jms-serializer.php'),
+            __DIR__.'/config/jms-serializer.php' => config_path('jms-serializer.php'),
         ]);
     }
 
