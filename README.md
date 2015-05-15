@@ -20,6 +20,8 @@ No composer package at the moment. To get it directly from github edit your comp
 
 Run `composer update`
 
+To copy the config file over to app run `php artisan vendor:publish`
+
 Add the following to the `providers` array in `config/app.php`:
 ```
 Pwm\LaravelJMSSerializer\LaravelJMSSerializerProvider::class,
