@@ -42,17 +42,35 @@ class LaravelJMSSerializerProvider extends ServiceProvider {
             $builder->setPropertyNamingStrategy(
                 $this->app->make('serializer.naming-strategy.'.$config['naming_strategy']['default'])
             );
-            if ($config['default_handlers']) $builder->addDefaultHandlers();
-            $builder->configureHandlers(function(Serializer\Handler\HandlerRegistry $registry) {
-                $registry->registerHandler('serialization', 'DateTime', 'json',
-                    function($visitor, \DateTime $obj, array $type) {
-                        return $obj->getTimestamp();
-                    }
-                );
-            });
-            if ($config['default_serialization_visitors']) $builder->addDefaultSerializationVisitors();
-            if ($config['default_deserialization_visitors']) $builder->addDefaultDeserializationVisitors();
-            if ($config['default_listeners']) $builder->addDefaultListeners();
+            if ($config['default_handlers']) {
+                $builder->addDefaultHandlers();
+            }
+
+            if (isset($config['custom_handlers'])) {
+                $builder->configureHandlers(function(Serializer\Handler\HandlerRegistry $registry) use ($config) {
+                    if (count($config['custom_handlers']) > 0) { foreach ($config['custom_handlers'] as $handler) {
+                        if ($handler['handler'] instanceof \Closure) {
+                            $registry->registerHandler(
+                                $handler['direction'],
+                                $handler['type'],
+                                $handler['format'],
+                                $handler['handler']
+                            );
+                        }
+                    }}
+                });
+            }
+
+            if ($config['default_serialization_visitors']) {
+                $builder->addDefaultSerializationVisitors();
+            }
+            if ($config['default_deserialization_visitors']) {
+                $builder->addDefaultDeserializationVisitors();
+            }
+            if ($config['default_listeners']) {
+                $builder->addDefaultListeners();
+            }
+
             return $builder->build();
         });
 
